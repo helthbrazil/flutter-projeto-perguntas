@@ -43,7 +43,7 @@ class Resultado extends StatelessWidget {
 
   List<Widget> getResultado() {
     List<Widget> lista = [];
-    if (somaNota > dataCorte) {
+    if (somaNota >= dataCorte) {
       lista.add(const Image(
           height: 200,
           image: NetworkImage(
