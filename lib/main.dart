@@ -24,30 +24,30 @@ class _PerguntaAppState extends State<PerguntaApp> {
 
   final List<Map<String, dynamic>> _perguntas = const [
     {
-      'texto': 'Qual é a sua cor favorita?',
+      'texto': 'Qual fruta é ressecada para se fabricar ameixa seca?',
       'respostas': [
-        {'id': 1, 'texto': 'Preto', 'nota': '2'},
-        {'id': 2, 'texto': 'Vermelho', 'nota': '8'},
-        {'id': 3, 'texto': 'Verde', 'nota': '10'},
-        {'id': 4, 'texto': 'Branco', 'nota': '5'},
+        {'id': 1, 'texto': 'Pera', 'nota': '0'},
+        {'id': 2, 'texto': 'Ameixa', 'nota': '1'},
+        {'id': 3, 'texto': 'Uva', 'nota': '0'},
+        {'id': 4, 'texto': 'Chuchu', 'nota': '0'},
       ]
     },
     {
-      'texto': 'Qual é o seu animal favorito?',
+      'texto': 'Que animal da fauna brasileira está retratado na nota de dez reis?',
       'respostas': [
-        {'id': 1, 'texto': 'Coelho', 'nota': '3'},
-        {'id': 2, 'texto': 'Cobra', 'nota': '6'},
-        {'id': 3, 'texto': 'Elefante', 'nota': '9'},
-        {'id': 4, 'texto': 'Leão', 'nota': '10'},
+        {'id': 1, 'texto': 'Jabuti', 'nota': '0'},
+        {'id': 2, 'texto': 'Onça', 'nota': '0'},
+        {'id': 3, 'texto': 'Arara', 'nota': '1'},
+        {'id': 4, 'texto': 'Tucano', 'nota': '0'},
       ]
     },
     {
-      'texto': 'Qual é o seu instrutor favorito?',
+      'texto': 'Qual profissional usa uma ferramenta chamada formão?',
       'respostas': [
-        {'id': 1, 'texto': 'Maria', 'nota': '10'},
-        {'id': 2, 'texto': 'João', 'nota': '10'},
-        {'id': 3, 'texto': 'Leo', 'nota': '8'},
-        {'id': 4, 'texto': 'Pedro', 'nota': '2'},
+        {'id': 1, 'texto': 'Carpinteiro', 'nota': '1'},
+        {'id': 2, 'texto': 'Relojoeiro', 'nota': '0'},
+        {'id': 3, 'texto': 'Confeiteiro', 'nota': '0'},
+        {'id': 4, 'texto': 'Bombeiro', 'nota': '0'},
       ]
     }
   ];
@@ -57,8 +57,8 @@ class _PerguntaAppState extends State<PerguntaApp> {
     if (temPerguntaSelecionada) {
       int notaResposta = int.parse(_perguntas[aux]['respostas'][index - 1]['nota']);
       somaNotas +=  notaResposta;
-      ToastUtil.toast(
-          'Você escolheu ${_perguntas[aux]['respostas'][index - 1]['texto']}. Somatório ($somaNotas)');
+      /* ToastUtil.toast(
+          'Você escolheu ${_perguntas[aux]['respostas'][index - 1]['texto']}. Somatório ($somaNotas)'); */
       setState(() {
         _perguntaSelecionada++;
       });

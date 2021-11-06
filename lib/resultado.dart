@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Resultado extends StatelessWidget {
+  final List<String> imagens = [
+    'https://c.tenor.com/mEckUDEzO0IAAAAM/brain-trash.gif',
+    'https://c.tenor.com/qO2OKSdAvvsAAAAM/sad-face.gif',
+    'https://c.tenor.com/Fx6pMTet6noAAAAM/matrix-neo.gif',
+    'https://c.tenor.com/2d-8MSwhY1kAAAAM/sherlock-holmes-conclusion-inevitable.gif',
+  ];
+
   final void Function() onPressed;
-  final int dataCorte = 20;
+  final int dataCorte = 2;
   /* final String uriName = 'https://www.svgrepo.com/show/7910/happy.svg';
   final String uriNameSad = 'https://www.svgrepo.com/show/209032/angry.svg'; */
 
-  final String uriName = 'https://www.svgrepo.com/show/7910/happy.svg';
+  final String uriName =
+      'https://c.tenor.com/fc1ghmjo6uIAAAAM/rick-y-morty-cantando.gif';
   final String uriNameSad = 'https://www.svgrepo.com/show/209032/angry.svg';
 
   final String imgSrc = 'assets/images/ripple.svg';
@@ -23,7 +30,7 @@ class Resultado extends StatelessWidget {
         child: Column(
           children: [
             const Divider(
-              height: 180,
+              height: 100,
               color: Colors.white,
             ),
             ...getResultado(),
@@ -44,20 +51,7 @@ class Resultado extends StatelessWidget {
   List<Widget> getResultado() {
     List<Widget> lista = [];
     if (somaNota >= dataCorte) {
-      lista.add(const Image(
-          height: 200,
-          image: NetworkImage(
-              'https://c.tenor.com/eSyi8jwqfSUAAAAM/yes-nod.gif')));
-
-      /* lista.add(
-        SvgPicture.network(
-          uriName,
-          height: 150,
-          placeholderBuilder: (BuildContext context) => Container(
-              padding: const EdgeInsets.all(30.0),
-              child: const CircularProgressIndicator()),
-        ),
-      ); */
+      lista.add(getImagem());
 
       lista.add(const Divider(
         height: 30,
@@ -70,23 +64,11 @@ class Resultado extends StatelessWidget {
       ));
 
       lista.add(Text(
-        'Sua nota foi $somaNota maior que a nota de corte ($dataCorte)',
+        '$getTextoResultado()',
         style: GoogleFonts.roboto(fontSize: 15, color: Colors.blueGrey),
       ));
     } else {
-      lista.add(const Image(
-          height: 200,
-          image: NetworkImage(
-              'https://c.tenor.com/PHhFkOY9l9UAAAAM/sad-baby.gif')));
-
-      /* SvgPicture.network(
-          uriNameSad,
-          height: 150,
-          placeholderBuilder: (BuildContext context) => Container(
-              padding: const EdgeInsets.all(30.0),
-              child: const CircularProgressIndicator()),
-        ),
-      ); */
+      lista.add(getImagem());
 
       lista.add(const Divider(
         height: 30,
@@ -99,11 +81,36 @@ class Resultado extends StatelessWidget {
       ));
 
       lista.add(Text(
-        'A sua nota $somaNota foi menor que $dataCorte',
+        '$getTextoResultado()',
         style: GoogleFonts.roboto(fontSize: 15, color: Colors.blueGrey),
       ));
     }
 
     return lista;
+  }
+
+  Widget getImagem() {
+    String teste = imagens[somaNota];
+      return Container(
+        alignment: Alignment.center,
+        child: Container(
+          width: 300.0,
+          height: 300.0,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20.0),
+              image: DecorationImage(
+                  image: NetworkImage(
+                    teste,
+                  ),
+                  fit: BoxFit.cover)),
+        ),
+      );
+  }
+
+  String getTextoResultado() {
+    if (somaNota == 0) return 'Errou tudo seu burro';
+    if (somaNota == 1) return 'Poxa vida acertou só uma';
+    if (somaNota == 2) return 'Passou raspando';
+    return 'Temos um Sherock Holmes aqui';
   }
 }
