@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// ignore: must_be_immutable
 class Resultado extends StatelessWidget {
   final List<String> imagens = [
     'https://c.tenor.com/mEckUDEzO0IAAAAM/brain-trash.gif',
@@ -21,11 +22,11 @@ class Resultado extends StatelessWidget {
   final String imgSrc = 'assets/images/ripple.svg';
   int somaNota;
 
-  Resultado(this.onPressed, this.somaNota);
+  Resultado(this.onPressed, this.somaNota, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         width: double.infinity,
         child: Column(
           children: [
@@ -50,61 +51,43 @@ class Resultado extends StatelessWidget {
 
   List<Widget> getResultado() {
     List<Widget> lista = [];
-    if (somaNota >= dataCorte) {
-      lista.add(getImagem());
 
-      lista.add(const Divider(
-        height: 30,
-        color: Colors.white,
-      ));
+    lista.add(getImagem());
 
-      lista.add(Text(
-        'Parabéns!!!',
-        style: GoogleFonts.roboto(fontSize: 20, color: Colors.blueGrey),
-      ));
+    lista.add(const Divider(
+      height: 30,
+      color: Colors.white,
+    ));
 
-      lista.add(Text(
-        '$getTextoResultado()',
-        style: GoogleFonts.roboto(fontSize: 15, color: Colors.blueGrey),
-      ));
-    } else {
-      lista.add(getImagem());
+    lista.add(Text(
+      somaNota >= dataCorte ? 'Parabéns!!!' : 'Que pena',
+      style: GoogleFonts.roboto(fontSize: 20, color: Colors.blueGrey),
+    ));
 
-      lista.add(const Divider(
-        height: 30,
-        color: Colors.white,
-      ));
-
-      lista.add(Text(
-        'Que pena',
-        style: GoogleFonts.roboto(fontSize: 20, color: Colors.blueGrey),
-      ));
-
-      lista.add(Text(
-        '$getTextoResultado()',
-        style: GoogleFonts.roboto(fontSize: 15, color: Colors.blueGrey),
-      ));
-    }
+    lista.add(Text(
+      getTextoResultado(),
+      style: GoogleFonts.roboto(fontSize: 15, color: Colors.blueGrey),
+    ));
 
     return lista;
   }
 
   Widget getImagem() {
     String teste = imagens[somaNota];
-      return Container(
-        alignment: Alignment.center,
-        child: Container(
-          width: 300.0,
-          height: 300.0,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.0),
-              image: DecorationImage(
-                  image: NetworkImage(
-                    teste,
-                  ),
-                  fit: BoxFit.cover)),
-        ),
-      );
+    return Container(
+      alignment: Alignment.center,
+      child: Container(
+        width: 300.0,
+        height: 300.0,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.0),
+            image: DecorationImage(
+                image: NetworkImage(
+                  teste,
+                ),
+                fit: BoxFit.cover)),
+      ),
+    );
   }
 
   String getTextoResultado() {

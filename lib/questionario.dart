@@ -34,7 +34,7 @@ class Questionario extends StatelessWidget {
   getRespostasTesteMap() {
     return List.from(perguntas[perguntaSelecionada]['respostas'])
         .map((e) => Resposta(
-              '${e['texto'].toString()}',
+              e['texto'].toString(),
               e['id'],
               (id) => {
                 responder(id),
